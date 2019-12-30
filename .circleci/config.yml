@@ -1,0 +1,90 @@
+version: 2.1
+
+jobs:
+  install:
+    docker:
+      - image: &node_image circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - &install_cache_key npm-install-v1-{{ checksum "package-lock.json" }}
+          - npm-install-v1-
+      - run:
+          name: Install Dependencies
+          command: npm ci --no-audit
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - build
+      - save_cache:
+          key: *install_cache_key
+          paths:
+            - ~/.npm/_cacache
+
+  audit:
+    docker:
+      - image: *node_image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: NPM Audit
+          command: |
+            npm -v
+            npm audit --audit-level=moderate
+
+  test:
+    docker:
+      - image: *node_image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test Packages
+          command: npm run test -- --ci
+
+  publish:
+    docker:
+      - image: *node_image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: npmrc
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - deploy:
+          name: Publish
+          when: on_success
+          command: |
+            git config --global user.name Bot Vance
+            git config --global user.email bot@autovance.com
+            npx semantic-release
+
+workflows:
+  version: 2
+
+  test:
+    jobs:
+      - install:
+          context: org-global
+      - audit:
+          context: org-global
+          requires:
+            - install
+      - test:
+          context: org-global
+          requires:
+            - install
+      - publish:
+          context: org-global
+          requires:
+            - test
+            - audit
+          filters:
+            branches:
+              only: master

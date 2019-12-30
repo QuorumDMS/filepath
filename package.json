@@ -1,0 +1,80 @@
+{
+  "name": "@autovance/filepath",
+  "version": "1.0.0",
+  "access": "public",
+  "description": "Tiny utility for manipulating file paths and names",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --fix lib/* tests/*",
+    "test": "jest tests/",
+    "test:watch": "npm run test -- --watchAll",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autovance/filepath.git"
+  },
+  "keywords": [
+    "file",
+    "path",
+    "lib"
+  ],
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "author": "Matt Forster <matt@autovance.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/autovance/filepath/issues"
+  },
+  "homepage": "https://github.com/autovance/filepath#readme",
+  "prettier": "@autovance/eslint-config-autovance/prettier",
+  "eslintConfig": {
+    "extends": [
+      "@autovance/eslint-config-autovance/typescript"
+    ],
+    "plugins": [
+      "jest"
+    ],
+    "env": {
+      "jest": true
+    },
+    "rules": {
+      "jest/no-focused-tests": "error"
+    }
+  },
+  "devDependencies": {
+    "@autovance/eslint-config-autovance": "^1.3.0",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.2.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "semantic-release": "^15.14.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  }
+}
