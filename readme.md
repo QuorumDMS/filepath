@@ -4,7 +4,8 @@
 
 Use this class to parse and manipulate file paths and names across platforms. Check out the tests for example use.
 
-Dependencies: zero
+**Dependencies: zero**  
+**Test Coverage: 100%**
 
 ## API
 
