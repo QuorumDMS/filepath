@@ -10,7 +10,7 @@ Dependencies: zero
 
 ### constructor
 
-> Setup a path
+Setup a path
 
 Ex.
 
@@ -20,8 +20,8 @@ const path = new FilePath('this/is/a/file.jpeg');
 
 ### path
 
-> Set: set up a path. Used in the constructor
-> Get: get the fully qualified path
+Set: set up a path. Used in the constructor  
+Get: get the fully qualified path
 
 Ex.
 
@@ -35,9 +35,9 @@ console.log(originalFile.path);
 
 ### file
 
-> Set: set a file and extension
-> If the extension is missing, it will be undefined.
-> Get: get the file with the extension
+Set: set a file and extension  
+If the extension is missing, it will be undefined.  
+Get: get the file with the extension
 
 Ex.
 
@@ -64,8 +64,8 @@ console.log(path.file, path.filename, path.extension, path.path);
 
 ### filename
 
-> Set: set the filename (without extension)
-> Get: get the filename (without extension)
+Set: set the filename (without extension)  
+Get: get the filename (without extension)
 
 Ex.
 
@@ -83,8 +83,8 @@ console.log(path.file, path.filename, path.extension, path.path);
 
 ### extension
 
-> Set: set the extension
-> Get: get the extension (does not include the `.` delimiter)
+Set: set the extension  
+Get: get the extension (does not include the `.` delimiter)
 
 Ex.
 
@@ -101,7 +101,7 @@ console.log(path.extension, path.file, path.path);
 
 ### folders
 
-> An ordered array of folder names. folders[0] represents the root of the path. If absolute, it will be empty '' (required), if relative, it will be the first folder, or reference '.' or '..'
+An ordered array of folder names. folders[0] represents the root of the path. If absolute, it will be empty '' (required), if relative, it will be the first folder, or reference '.' or '..'
 
 Ex.
 
