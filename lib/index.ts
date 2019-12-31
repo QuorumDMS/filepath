@@ -64,7 +64,7 @@ export class FilePath {
   }
 
   public get isRelative(): boolean {
-    return this.folders[0] !== '';
+    return this.isAbsolute === false;
   }
 }
 
