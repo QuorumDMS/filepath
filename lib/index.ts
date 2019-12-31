@@ -2,7 +2,7 @@
 
 import { extname, basename, dirname, sep } from 'path';
 
-class FilePath {
+export class FilePath {
   /** The string representing the file name excluding the extension */
   public filename: string | undefined;
 
