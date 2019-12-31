@@ -13,7 +13,7 @@ class FilePath {
 
   private _extension: string | undefined;
 
-  /** Set a up path to be manipulated */
+  /** Set up a path */
   public constructor(path: string) {
     this.path = path;
   }

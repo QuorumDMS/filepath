@@ -2,7 +2,7 @@
   "name": "@autovance/filepath",
   "version": "0.0.0",
   "access": "public",
-  "description": "Tiny utility for manipulating file paths and names",
+  "description": "URL like utility for manipulating file paths, names and extensions",
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",

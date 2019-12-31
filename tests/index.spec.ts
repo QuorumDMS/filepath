@@ -11,6 +11,24 @@ describe('FilePath', () => {
     expect(path.path).toEqual('/this/is/a/full/path.jpeg');
   });
 
+  it('parses a relative path', () => {
+    const path = new FilePath('this/is/a/full/path.jpeg');
+
+    expect(path.folders).toEqual(['this', 'is', 'a', 'full']);
+    expect(path.filename).toEqual('path');
+    expect(path.extension).toEqual('jpeg');
+    expect(path.file).toEqual('path.jpeg');
+    expect(path.path).toEqual('this/is/a/full/path.jpeg');
+
+    path.folders.unshift('.');
+    path.folders[path.folders.length - 1] = 'relative';
+    expect(path.folders).toEqual(['.', 'this', 'is', 'a', 'relative']);
+
+    path.folders[0] = '..';
+    expect(path.folders).toEqual(['..', 'this', 'is', 'a', 'relative']);
+    expect(path.path).toEqual('../this/is/a/relative/path.jpeg');
+  });
+
   it('handles an extensionless path', () => {
     const path = new FilePath('/this/is/a/web_upload');
 
@@ -36,6 +54,16 @@ describe('FilePath', () => {
     expect(path.filename).toEqual(undefined);
     expect(path.file).toEqual(undefined);
     expect(path.path).toEqual('/this/is/the/');
+  });
+
+  it('handles extensionless files', () => {
+    const path = new FilePath('/this/is/the/original_file.pdf');
+    path.file = 'original_file';
+
+    expect(path.extension).toEqual(undefined);
+    expect(path.filename).toEqual('original_file');
+    expect(path.file).toEqual('original_file');
+    expect(path.path).toEqual('/this/is/the/original_file');
   });
 
   it('can clear out an extension completely', () => {
