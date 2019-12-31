@@ -31,7 +31,7 @@ const originalFile = new FilePath();
 originalFile.path = '/this/is/a/file.jpeg';
 console.log(originalFile.path);
 
-> 'this/is/a/file.jpeg'
+> '/this/is/a/file.jpeg'
 ```
 
 ### file
@@ -127,7 +127,7 @@ console.log(path.folders, path.path);
 
 ### isAbsolute and isRelative
 
-Booleans indicating if the path is absolute or relative. Absolute paths only start with '/',
+Booleans indicating if the path is absolute or relative. Absolute paths start with '/',
 and the `path.folders[0] === ''`;
 
 Ex.
