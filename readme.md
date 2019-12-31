@@ -128,7 +128,7 @@ console.log(path.folders, path.path);
 ### isAbsolute and isRelative
 
 Booleans indicating if the path is absolute or relative. Absolute paths start with '/',
-and the `path.folders[0] === ''`;
+and `path.folders[0] === ''`;
 
 Ex.
 
