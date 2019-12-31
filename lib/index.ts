@@ -7,7 +7,7 @@ class FilePath {
   public filename: string | undefined;
 
   /** An ordered array of folder names. folders[0] represents the root of the path.
-   * If absolute, it will be empty '' (required), if relative, it will be the folder reference '.' or '..'
+   * If absolute, it will be an empty string (required), if relative, it will be the folder reference '.' or '..'
    */
   public folders: string[] = [];
 
@@ -57,6 +57,14 @@ class FilePath {
   /** Get: the extension. Does not include the `.` delimiter */
   public get extension(): string | undefined {
     return this._extension;
+  }
+
+  public get isAbsolute(): boolean {
+    return this.folders[0] === '';
+  }
+
+  public get isRelative(): boolean {
+    return this.folders[0] !== '';
   }
 }
 

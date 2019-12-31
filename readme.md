@@ -124,3 +124,37 @@ console.log(path.folders, path.path);
 > ['..', 'this', 'is', 'relative']
 > '../this/is/relative/file.jpeg;
 ```
+
+### isAbsolute and isRelative
+
+Booleans indicating if the path is absolute or relative. Absolute paths only start with '/',
+and the `path.folders[0] === ''`;
+
+Ex.
+
+```js
+
+const path = new FilePath('/this/is/a/file.jpeg');
+console.log(path.isAbsolute, path.isRelative)
+
+> true
+> false
+
+path.path = 'this/is/a/file.jpeg';
+console.log(path.isAbsolute, path.isRelative)
+
+> false
+> true
+
+path.path = './this/is/a/file.jpeg';
+console.log(path.isAbsolute, path.isRelative)
+
+> false
+> true
+
+path.path = '../this/is/a/file.jpeg';
+console.log(path.isAbsolute, path.isRelative)
+
+> false
+> true
+```

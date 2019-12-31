@@ -85,4 +85,22 @@ describe('FilePath', () => {
     expect(path.file).toEqual(undefined);
     expect(path.path).toEqual('/this/is/the/');
   });
+
+  it('isAbsolute and isRelative', () => {
+    const path = new FilePath('/this/is/a/file.jpeg');
+    expect(path.isAbsolute).toEqual(true);
+    expect(path.isRelative).toEqual(false);
+
+    path.path = 'this/is/a/file.jpeg';
+    expect(path.isAbsolute).toEqual(false);
+    expect(path.isRelative).toEqual(true);
+
+    path.path = './this/is/a/file.jpeg';
+    expect(path.isAbsolute).toEqual(false);
+    expect(path.isRelative).toEqual(true);
+
+    path.path = '../this/is/a/file.jpeg';
+    expect(path.isAbsolute).toEqual(false);
+    expect(path.isRelative).toEqual(true);
+  });
 });
