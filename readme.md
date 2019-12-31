@@ -122,7 +122,7 @@ path.folders[path.folders.length - 1] = 'relative';
 console.log(path.folders, path.path);
 
 > ['..', 'this', 'is', 'relative']
-> '../this/is/relative/file.jpeg;
+> '../this/is/relative/file.jpeg'
 ```
 
 ### isAbsolute and isRelative
