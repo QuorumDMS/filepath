@@ -36,6 +36,15 @@ describe('FilePath', () => {
     expect(path.path).toEqual('/this/is/a/web_upload');
   });
 
+  it('handles additional delimiters in file name', () => {
+    const path = new FilePath('/this/is/a/web_upload-1.3.pdf');
+
+    expect(path.extension).toEqual('pdf');
+    path.filename = `${path.filename}_low`;
+    path.extension = 'png';
+    expect(path.path).toEqual('/this/is/a/web_upload-1.3_low.png');
+  });
+
   it('sets a file independent of the folderpath', () => {
     const path = new FilePath('/this/is/the/original_file.pdf');
     path.file = 'thumbnail_low.jpeg';
