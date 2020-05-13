@@ -12,7 +12,7 @@ export class FilePath {
   public folders: string[] = [];
 
   /** The file extension without the delimiter if it exists */
-  public extension: string | undefined;
+  private _extension: string | undefined;
 
   /** Set up a path */
   public constructor(path: string) {
@@ -64,7 +64,7 @@ export class FilePath {
   public get isAbsolute(): boolean {
     return this.folders[0] === '';
   }
-  
+
   /** Get: is the path relative? */
   public get isRelative(): boolean {
     return this.isAbsolute === false;
