@@ -13,8 +13,6 @@ Use this class to parse and manipulate file paths and names across platforms. Ch
 
 Setup a path
 
-Ex.
-
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
 ```
@@ -23,8 +21,6 @@ const path = new FilePath('this/is/a/file.jpeg');
 
 Set: set up a path. Used in the constructor  
 Get: get the fully qualified path
-
-Ex.
 
 ```js
 const originalFile = new FilePath();
@@ -39,8 +35,6 @@ console.log(originalFile.path);
 Set: set a file and extension  
 If the extension is missing, it will be undefined.  
 Get: get the file with the extension
-
-Ex.
 
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
@@ -68,8 +62,6 @@ console.log(path.file, path.filename, path.extension, path.path);
 Set: set the filename (without extension)  
 Get: get the filename (without extension)
 
-Ex.
-
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
 path.filename = 'new'
@@ -87,8 +79,6 @@ console.log(path.file, path.filename, path.extension, path.path);
 Set: set the extension  
 Get: get the extension (does not include the `.` delimiter)
 
-Ex.
-
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
 path.extension = 'png';
@@ -103,8 +93,6 @@ console.log(path.extension, path.file, path.path);
 ### folders
 
 An ordered array of folder names. folders[0] represents the root of the path. If absolute, it will be empty '' (required), if relative, it will be the first folder, or reference '.' or '..'
-
-Ex.
 
 ```js
 const path = new FilePath('/this/is/a/file.jpeg');
@@ -129,8 +117,6 @@ console.log(path.folders, path.path);
 
 Booleans indicating if the path is absolute or relative. Absolute paths start with '/',
 and `path.folders[0] === ''`;
-
-Ex.
 
 ```js
 
