@@ -11,7 +11,8 @@ export class FilePath {
    */
   public folders: string[] = [];
 
-  private _extension: string | undefined;
+  /** The file extension without the delimiter if it exists */
+  public extension: string | undefined;
 
   /** Set up a path */
   public constructor(path: string) {
@@ -26,7 +27,7 @@ export class FilePath {
   }
 
   /** Get: the current path */
-  public get path() {
+  public get path(): string {
     return `${this.folders.join(sep)}${sep}${this.file ? this.file : ''}`;
   }
 
@@ -59,10 +60,12 @@ export class FilePath {
     return this._extension;
   }
 
+  /** Get: is the path absolute? */
   public get isAbsolute(): boolean {
     return this.folders[0] === '';
   }
-
+  
+  /** Get: is the path relative? */
   public get isRelative(): boolean {
     return this.isAbsolute === false;
   }
