@@ -71,7 +71,7 @@ console.log(path.file, path.filename, path.extension, path.path);
 > 'new.jpeg'
 > 'new'
 > 'jpeg'
-> 'this/is/a/new.pdf'
+> 'this/is/a/new.jpeg'
 ```
 
 ### extension
