@@ -1,13 +1,13 @@
 /* eslint-disable no-restricted-syntax */
 
-import { extname, basename, dirname, sep } from 'path';
+import { extname, basename, dirname, sep, join } from 'path';
 
 export class FilePath {
   /** The string representing the file name excluding the extension */
   public filename: string | undefined;
 
   /** An ordered array of folder names. folders[0] represents the root of the path.
-   * If absolute, it will be an empty string (required), if relative, it will be the folder reference '.' or '..'
+   * If absolute, it will be an empty string (required), if relative it will be the first folder, '.', or '..'
    */
   public folders: string[] = [];
 
@@ -28,7 +28,18 @@ export class FilePath {
 
   /** Get: the current path */
   public get path(): string {
-    return `${this.folders.join(sep)}${sep}${this.file ? this.file : ''}`;
+    return join(this.folders.join(sep), this.file ? this.file : sep);
+  }
+
+  /** Get: the current directory */
+  public get dir(): string {
+    // Inner .join to keep the root empty string delimiter if present
+    return join(this.folders.join(sep));
+  }
+
+  /** Set: change the current directory */
+  public set dir(dir: string) {
+    this.folders = dir.split(sep);
   }
 
   /** Set: the full file name including the extension */
