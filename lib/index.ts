@@ -7,7 +7,7 @@ export class FilePath {
   public filename: string | undefined;
 
   /** An ordered array of folder names. folders[0] represents the root of the path.
-   * If absolute, it will be an empty string (required), if relative, it will be the folder reference '.' or '..'
+   * If absolute, it will be an empty string (required), if relative it will be the first folder, '.', or '..'
    */
   public folders: string[] = [];
 
@@ -33,12 +33,13 @@ export class FilePath {
 
   /** Get: the current directory */
   public get dir(): string {
+    // Inner .join to keep the root empty string delimiter if present
     return join(this.folders.join(sep));
   }
 
   /** Set: change the current directory */
   public set dir(dir: string) {
-    this.path = join(dir, this.file ? this.file : '');
+    this.folders = dir.split(sep);
   }
 
   /** Set: the full file name including the extension */

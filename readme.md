@@ -57,6 +57,25 @@ console.log(path.file, path.filename, path.extension, path.path);
 > 'this/is/a/new'
 ```
 
+### dir
+
+Set: change the directory (without the file)
+Get: get the directory (without the file)
+
+```js
+const path = new FilePath('this/is/a/file.jpeg');
+path.dir = '/this/is/the'
+
+console.log(path.dir, path.file, path.filename, path.extension, path.path);
+
+> '/this/is/the'
+> 'new.jpeg'
+> 'new'
+> 'jpeg'
+> 'this/is/the/new.jpeg'
+
+```
+
 ### filename
 
 Set: set the filename (without extension)  
@@ -92,7 +111,9 @@ console.log(path.extension, path.file, path.path);
 
 ### folders
 
-An ordered array of folder names. folders[0] represents the root of the path. If absolute, it will be empty '' (required), if relative, it will be the first folder, or reference '.' or '..'
+An ordered array of folder names. folders[0] represents the root of the path. If absolute, it will be empty '' (required), if relative, it will be the first folder, or reference '.' or '..'.
+
+The recommended use it to change a specific folder in the path, using the index.
 
 ```js
 const path = new FilePath('/this/is/a/file.jpeg');
@@ -100,10 +121,10 @@ console.log(path.folders);
 
 > ['', 'this', 'is', 'a']
 
-path.path = 'this/is/a/file.jpeg';
+path.path = 'this/is/the/file.jpeg';
 console.log(path.folders);
 
-> ['this', 'is', 'a']
+> ['this', 'is', 'the']
 
 path.folders.unshift('..');
 path.folders[path.folders.length - 1] = 'relative';

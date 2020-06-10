@@ -71,13 +71,13 @@ describe('FilePath', () => {
 
   it('sets directory independent of the file', () => {
     const path = new FilePath('/this/is/the/original_file.pdf');
-    path.dir = '/new/location';
+    path.dir = 'new/location';
 
     expect(path.extension).toEqual('pdf');
     expect(path.filename).toEqual('original_file');
     expect(path.file).toEqual('original_file.pdf');
-    expect(path.path).toEqual('/new/location/original_file.pdf');
-    expect(path.dir).toEqual('/new/location');
+    expect(path.path).toEqual('new/location/original_file.pdf');
+    expect(path.dir).toEqual('new/location');
   });
 
   it('can clear out a file completely', () => {
