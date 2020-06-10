@@ -69,10 +69,10 @@ path.dir = '/this/is/the'
 console.log(path.dir, path.file, path.filename, path.extension, path.path);
 
 > '/this/is/the'
-> 'new.jpeg'
-> 'new'
+> 'file.jpeg'
+> 'file'
 > 'jpeg'
-> 'this/is/the/new.jpeg'
+> 'this/is/the/file.jpeg'
 
 ```
 
