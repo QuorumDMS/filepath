@@ -33,13 +33,14 @@ describe('FilePath', () => {
 
   it('normalizes path', () => {
     const path = new FilePath('this/is/../is/../is/./a/full/path.jpeg');
-
     expect(path.folders).toEqual(['this', 'is', '..', 'is', '..', 'is', '.', 'a', 'full']);
+
+    path.dir = '/this/is/a/half';
     expect(path.filename).toEqual('path');
     expect(path.extension).toEqual('jpeg');
     expect(path.file).toEqual('path.jpeg');
-    expect(path.path).toEqual('this/is/a/full/path.jpeg');
-    expect(path.dir).toEqual('this/is/a/full');
+    expect(path.path).toEqual('/this/is/a/half/path.jpeg');
+    expect(path.dir).toEqual('/this/is/a/half');
   });
 
   it('handles an extensionless path', () => {
