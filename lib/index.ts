@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 
-import { extname, basename, dirname, sep } from 'path';
+import { extname, basename, dirname, sep, join } from 'path';
 
 export class FilePath {
   /** The string representing the file name excluding the extension */
@@ -28,7 +28,15 @@ export class FilePath {
 
   /** Get: the current path */
   public get path(): string {
-    return `${this.folders.join(sep)}${sep}${this.file ? this.file : ''}`;
+    return join(this.folders.join(sep), this.file ? this.file : sep);
+  }
+
+  public get dir(): string {
+    return join(this.folders.join(sep));
+  }
+
+  public set dir(dir: string) {
+    this.path = join(dir, this.file ? this.file : '');
   }
 
   /** Set: the full file name including the extension */

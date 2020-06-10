@@ -9,6 +9,7 @@ describe('FilePath', () => {
     expect(path.extension).toEqual('jpeg');
     expect(path.file).toEqual('path.jpeg');
     expect(path.path).toEqual('/this/is/a/full/path.jpeg');
+    expect(path.dir).toEqual('/this/is/a/full');
   });
 
   it('parses a relative path', () => {
@@ -19,6 +20,7 @@ describe('FilePath', () => {
     expect(path.extension).toEqual('jpeg');
     expect(path.file).toEqual('path.jpeg');
     expect(path.path).toEqual('this/is/a/full/path.jpeg');
+    expect(path.dir).toEqual('this/is/a/full');
 
     path.folders.unshift('.');
     path.folders[path.folders.length - 1] = 'relative';
@@ -27,6 +29,17 @@ describe('FilePath', () => {
     path.folders[0] = '..';
     expect(path.folders).toEqual(['..', 'this', 'is', 'a', 'relative']);
     expect(path.path).toEqual('../this/is/a/relative/path.jpeg');
+  });
+
+  it('normalizes path', () => {
+    const path = new FilePath('this/is/../is/../is/./a/full/path.jpeg');
+
+    expect(path.folders).toEqual(['this', 'is', '..', 'is', '..', 'is', '.', 'a', 'full']);
+    expect(path.filename).toEqual('path');
+    expect(path.extension).toEqual('jpeg');
+    expect(path.file).toEqual('path.jpeg');
+    expect(path.path).toEqual('this/is/a/full/path.jpeg');
+    expect(path.dir).toEqual('this/is/a/full');
   });
 
   it('handles an extensionless path', () => {
@@ -53,6 +66,18 @@ describe('FilePath', () => {
     expect(path.filename).toEqual('thumbnail_low');
     expect(path.file).toEqual('thumbnail_low.jpeg');
     expect(path.path).toEqual('/this/is/the/thumbnail_low.jpeg');
+    expect(path.dir).toEqual('/this/is/the');
+  });
+
+  it('sets directory independent of the file', () => {
+    const path = new FilePath('/this/is/the/original_file.pdf');
+    path.dir = '/new/location';
+
+    expect(path.extension).toEqual('pdf');
+    expect(path.filename).toEqual('original_file');
+    expect(path.file).toEqual('original_file.pdf');
+    expect(path.path).toEqual('/new/location/original_file.pdf');
+    expect(path.dir).toEqual('/new/location');
   });
 
   it('can clear out a file completely', () => {
