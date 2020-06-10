@@ -33,14 +33,13 @@ describe('FilePath', () => {
 
   it('normalizes path', () => {
     const path = new FilePath('this/is/../is/../is/./a/full/path.jpeg');
-    expect(path.folders).toEqual(['this', 'is', '..', 'is', '..', 'is', '.', 'a', 'full']);
 
-    path.dir = '/this/is/a/half';
+    expect(path.folders).toEqual(['this', 'is', '..', 'is', '..', 'is', '.', 'a', 'full']);
     expect(path.filename).toEqual('path');
     expect(path.extension).toEqual('jpeg');
     expect(path.file).toEqual('path.jpeg');
-    expect(path.path).toEqual('/this/is/a/half/path.jpeg');
-    expect(path.dir).toEqual('/this/is/a/half');
+    expect(path.path).toEqual('this/is/a/full/path.jpeg');
+    expect(path.dir).toEqual('this/is/a/full');
   });
 
   it('handles an extensionless path', () => {
@@ -72,13 +71,13 @@ describe('FilePath', () => {
 
   it('sets directory independent of the file', () => {
     const path = new FilePath('/this/is/the/original_file.pdf');
-    path.dir = '/new/location';
+    path.dir = 'new/location';
 
     expect(path.extension).toEqual('pdf');
     expect(path.filename).toEqual('original_file');
     expect(path.file).toEqual('original_file.pdf');
-    expect(path.path).toEqual('/new/location/original_file.pdf');
-    expect(path.dir).toEqual('/new/location');
+    expect(path.path).toEqual('new/location/original_file.pdf');
+    expect(path.dir).toEqual('new/location');
   });
 
   it('can clear out a file completely', () => {
