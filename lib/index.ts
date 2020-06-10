@@ -31,10 +31,12 @@ export class FilePath {
     return join(this.folders.join(sep), this.file ? this.file : sep);
   }
 
+  /** Get: the current directory */
   public get dir(): string {
     return join(this.folders.join(sep));
   }
 
+  /** Set: change the current directory */
   public set dir(dir: string) {
     this.path = join(dir, this.file ? this.file : '');
   }
