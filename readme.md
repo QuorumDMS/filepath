@@ -72,7 +72,7 @@ console.log(path.dir, path.file, path.filename, path.extension, path.path);
 > 'file.jpeg'
 > 'file'
 > 'jpeg'
-> 'this/is/the/file.jpeg'
+> '/this/is/the/file.jpeg'
 
 ```
 
