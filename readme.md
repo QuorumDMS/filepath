@@ -59,7 +59,7 @@ console.log(path.file, path.filename, path.extension, path.path);
 
 ### dir
 
-Set: change the directory (without the file)
+Set: change the directory (without the file)  
 Get: get the directory (without the file)
 
 ```js
