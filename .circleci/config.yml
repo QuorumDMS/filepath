@@ -81,7 +81,7 @@ workflows:
           requires:
             - install
       - publish:
-          context: org-global
+          context: deploy-npm
           requires:
             - test
             - audit
