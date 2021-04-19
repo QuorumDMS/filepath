@@ -19,8 +19,8 @@ const path = new FilePath('this/is/a/file.jpeg');
 
 ### path
 
-Set: set up a path. Used in the constructor  
-Get: get the fully qualified path
+**Set**: set up a path. Used in the constructor  
+**Get**: get the fully qualified path
 
 ```js
 const originalFile = new FilePath();
@@ -32,9 +32,9 @@ console.log(originalFile.path);
 
 ### file
 
-Set: set a file and extension  
+**Set**: set a file and extension  
 If the extension is missing, it will be undefined.  
-Get: get the file with the extension
+**Get**: get the file with the extension
 
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
@@ -59,8 +59,8 @@ console.log(path.file, path.filename, path.extension, path.path);
 
 ### dir
 
-Set: change the directory (without the file)  
-Get: get the directory (without the file)
+**Set**: change the directory (without the file)  
+**Get**: get the directory (without the file)
 
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
@@ -78,8 +78,8 @@ console.log(path.dir, path.file, path.filename, path.extension, path.path);
 
 ### filename
 
-Set: set the filename (without extension)  
-Get: get the filename (without extension)
+**Set**: set the filename (without extension)  
+**Get**: get the filename (without extension)
 
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
@@ -95,8 +95,8 @@ console.log(path.file, path.filename, path.extension, path.path);
 
 ### extension
 
-Set: set the extension  
-Get: get the extension (does not include the `.` delimiter)
+**Set**: set the extension  
+**Get**: get the extension (does not include the `.` delimiter)
 
 ```js
 const path = new FilePath('this/is/a/file.jpeg');
